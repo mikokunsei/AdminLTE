@@ -41,7 +41,7 @@
                                             Password
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" name="password" id="" placeholder="Password" value="{{$edit->password}}">
+                                            <input type="password" class="form-control" name="password" id="" placeholder="Password" value="">
                                             
                                         </div>
                                     </div>

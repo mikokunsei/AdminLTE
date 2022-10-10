@@ -3,29 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use DB;
 
 class UserController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function AllUser()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
+        //elequent better
+
+        //query builder
         $all = DB::table('users')->get();
         return view('all-user', compact('all'));
     }
 
-    //Add User and Insert User
-    public function Adduser()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         return view('add-user');
     }
 
-    public function InsertUser(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $data = array();
         $data['name'] = $request->name;
@@ -53,13 +72,37 @@ class UserController extends Controller
         }
     }
 
-    public function EditUser($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         $edit = DB::table('users')->where('id',$id)->first();
         return view('edit-user', compact('edit'));
     }
 
-    public function UpdateUser(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
         $data = array();
         $data['name'] = $request->name;
@@ -86,7 +129,13 @@ class UserController extends Controller
         }
     }
 
-    public function DeleteUser($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
         $delete = DB::table('users')->where('id', $id)->delete();
         if ($delete) {
