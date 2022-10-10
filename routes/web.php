@@ -36,14 +36,14 @@ Route::get('/add-user', [App\Http\Controllers\UserController::class, 'create'])-
 Route::post('insert-user', [App\Http\Controllers\UserController::class, 'store'])->name('insertuser');
 Route::get('/edit-user/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('edituser');
 Route::put('/update-user/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('updateuser');
-Route::delete('/delete-user/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('deleteuser');
+Route::get('/delete-user/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('deleteuser');
 
 Route::get('/all-mahasiswa', [App\Http\Controllers\MahasiswaController::class, 'index'])->name('allmahasiswa');
 Route::get('/add-mahasiswa', [App\Http\Controllers\MahasiswaController::class, 'create'])->name('addmahasiswa');
 Route::post('insert-mahasiswa', [App\Http\Controllers\MahasiswaController::class, 'store'])->name('insertmahasiswa');
 Route::get('/edit-mahasiswa/{id}', [App\Http\Controllers\MahasiswaController::class, 'edit'])->name('editmahasiswa');
 Route::put('/update-mahasiswa/{id}', [App\Http\Controllers\MahasiswaController::class, 'update'])->name('updatemahasiswa');
-Route::delete('/delete-mahasiswa/{id}', [App\Http\Controllers\MahasiswaController::class, 'destroy'])->name('deletemahasiswa');
+Route::get('/delete-mahasiswa/{id}', [App\Http\Controllers\MahasiswaController::class, 'destroy'])->name('deletemahasiswa');
 
 
 //Route::put('/update-user/{id}', [App\Http\Controllers\UserController::class, 'UpdateUser'])->name('updateuser');

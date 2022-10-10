@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -53,6 +54,8 @@ class UserController extends Controller
         $data['password'] = Hash::make($request->password);
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['updated_at'] = date('Y-m-d H:i:s');
+
+        // $data = User::create($request->all());
 
         $insert = DB::table('users')->insert($data);
         if ($insert) 
@@ -112,6 +115,9 @@ class UserController extends Controller
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['updated_at'] = date('Y-m-d H:i:s');
 
+        // $data = User::findOrFail($id);
+        // $data->update($request->all());
+
         $update = DB::table('users')->where('id', $id)->update($data);
         if ($update) {
             $notification=array(
@@ -147,7 +153,7 @@ class UserController extends Controller
         }
         else {
             $notification=array(
-                'messege'=>'Something is wrong, please try again!',
+                'messege'=>'Something is wrong !',
                 'alert-type'=>'error'
             );
             return redirect()->route('alluser')->with($notification);

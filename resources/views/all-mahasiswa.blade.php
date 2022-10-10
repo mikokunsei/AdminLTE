@@ -43,7 +43,7 @@
                                 <td>{{ $row->address }}</td>
                                 <td>
                                     <a href="{{url('/edit-mahasiswa/'. $row->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="#" class="btn btn-sm btn-danger" id="delete">Delete</a>
+                                    <a href="{{url('/delete-mahasiswa/'. $row->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                                 </td>
                             </tr>
                         

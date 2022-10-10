@@ -16,9 +16,9 @@
                         </div>
 
                         <div class="card-body">
-                            <form role="form" action="{{url('/edit-mahasiswa/'. $edit->id)}} " method="POST" enctype="multipart/form-data">
+                            <form role="form" action="{{url('/update-mahasiswa/'. $edit->id)}} " method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @method('POST')
+                                @method('PUT')
                                 <div class="container">
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-2 col-form-label"> 
@@ -49,7 +49,7 @@
                                             Phone
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="number" class="form-control" name="phone" id="" placeholder="Enter your phone number" value="{{$edit->phone}}" required>
+                                            <input type="number" class="form-control" name="phone" id="" placeholder="Enter your phone number" value="0{{$edit->phone}}" required>
                                         </div>
                                     </div>
                                     
@@ -76,7 +76,7 @@
                                             Image
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="file" class="form-control" name="image" id="" value="" required>
+                                            <input type="file" class="form-control" name="image" id="" value="{{$edit->image}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -84,7 +84,7 @@
                                             Address
                                         </label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" name="address" placeholder="Enter your address" value="{{$edit->address}}"></textarea>
+                                            <textarea class="form-control" name="address" placeholder="Enter your address" value="{{ old('address', $edit->address)}}"></textarea>
                                         </div>
                                     </div>
                                     

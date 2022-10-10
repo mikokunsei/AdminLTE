@@ -127,7 +127,31 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Mahasiswa::findOrFail($id);
+        $data->update($request->all());
+
+        if ($request->hasFile('image')) {
+
+            $request->file('image')->move('imagemahasiswa/', $request->file('image')->getClientOriginalName()); // ambil image simpan di folder
+            $data->image = $request->file('image')->getClientOriginalName(); // ambil nama file
+            $data->save();
+            
+            $notification=array(
+                'messege'=>'Successfully Data Created',
+                'alert-type'=>'success'
+            );
+            return redirect()->route('allmahasiswa')->with($notification);
+            
+        }
+
+        else {
+            $notification=array(
+                'messege'=>'Something is wrong !',
+                'alert-type'=>'error'
+            );
+            return redirect()->route('allmahasiswa')->with($notification);
+        }
+
     }
 
     /**
@@ -138,6 +162,20 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = DB::table('mahasiswas')->where('id', $id)->delete();
+        if ($delete) {
+            $notification=array(
+                'messege'=>'Successfully Deleted Data Mahasiswa',
+                'alert-type'=>'success'
+            );
+            return redirect()->route('allmahasiswa')->with($notification);
+        }
+        else {
+            $notification=array(
+                'messege'=>'Something is wrong !',
+                'alert-type'=>'error'
+            );
+            return redirect()->route('allmahasiswa')->with($notification);
+        }
     }
 }
