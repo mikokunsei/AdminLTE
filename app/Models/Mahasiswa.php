@@ -9,6 +9,7 @@ class Mahasiswa extends Model
 {
     use HasFactory;
 
+    //pengecualian field untuk diproses
     protected $guarded = [];
     
     protected $date = ['craeted_at'];

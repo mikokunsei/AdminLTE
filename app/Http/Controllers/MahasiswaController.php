@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -138,7 +141,12 @@ class MahasiswaController extends Controller
     {
         // dd($request->password);
             if ($request->hasFile('image')) {
+
+                
+                // Update data tanpa password
                 if ($request->password == null) {
+                    // dd('imagemahasiswa/'.$request->file('image')->getClientOriginalName());
+                    $data = Mahasiswa::findOrFail($id);
                     $data_mahasiswa = [
                         'name' => $request->name,
                         'nim' => $request->nim,
@@ -150,10 +158,19 @@ class MahasiswaController extends Controller
                         // $data['password'] = Hash::make($request->password);
                     ];
              
-                    $data = Mahasiswa::findOrFail($id);
+                    $destination = public_path('imagemahasiswa/'.$request->image_old);
+                    // dd($destination);
+                    if (File::exists($destination)) {
+                        
+                        File::delete($destination);
+                    }
+
                     $data->update($data_mahasiswa);
+                    
+                    
                 }
                 else {
+                    $data = Mahasiswa::findOrFail($id);
                     $data_mahasiswa = [
                         'name' => $request->name,
                         'nim' => $request->nim,
@@ -167,10 +184,17 @@ class MahasiswaController extends Controller
         
                     ];
                 
-                    $data = Mahasiswa::findOrFail($id);
-                    $data->update($request->all());
-                }
+                    $destination = public_path('imagemahasiswa/'.$request->file('image')->getClientOriginalName());
+                    if (File::exists($destination)) {
+                        // dd($destination);
+                        File::delete($destination);
+                    }
 
+                    $data->update($request->all());
+
+                    
+                }
+                
                 $request->file('image')->move('imagemahasiswa/', $request->file('image')->getClientOriginalName()); // ambil image simpan di folder
                 $data->image = $request->file('image')->getClientOriginalName(); // ambil nama file
                 $data->save();
@@ -184,8 +208,9 @@ class MahasiswaController extends Controller
                 
             }
             else {
-
+                // Update data tanpa gambar
                 if ($request->password == null) {
+                    $data = Mahasiswa::findOrFail($id);
                     $data_mahasiswa = [
                         'name' => $request->name,
                         'nim' => $request->nim,
@@ -195,12 +220,13 @@ class MahasiswaController extends Controller
                         
                         // $data['password'] = Hash::make($request->password);
                     ];  
-                    $data = Mahasiswa::findOrFail($id);
+                    
                     $data->update($data_mahasiswa);
                     
                 }
                     else {
                         // dd(Hash::make($request->password));
+                        $data = Mahasiswa::findOrFail($id);
                         $data_mahasiswa = [
                             'name' => $request->name,
                             'nim' => $request->nim,
@@ -213,7 +239,6 @@ class MahasiswaController extends Controller
             
                         ];
                     
-                        $data = Mahasiswa::findOrFail($id);
                         $data->update($data_mahasiswa);
             
                     }

@@ -76,8 +76,11 @@
                                             Image
                                         </label>
                                         <div class="col-sm-10">
+                                            {{-- <img class="img-preview img-fluid"> --}}
                                             <img src="{{asset('imagemahasiswa/' . $edit->image)}}" alt="" style="width: 100px" class="mb-2">
-                                            <input type="file" class="form-control" name="image" id="" value="{{$edit->image}}">
+                                            <input type="file" class="form-control" name="image" id="" value="{{$edit->image}}" onchange="previewImage()">
+                                            {{-- Menyimpan nama file yang lama --}}
+                                            <input type="hidden" name="image_old" value="{{$edit->image}}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -106,5 +109,21 @@
         </section>
 
     </div>
-    
+
+    {{-- <script>
+        function previewImage(){
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+            
+        }
+    </script> --}}
 @endsection
