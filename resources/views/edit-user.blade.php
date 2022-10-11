@@ -18,7 +18,8 @@
                         <div class="card-body">
                             <form role="form" action="{{url('/update-user/'. $edit->id)}} " method="POST">
                                 @csrf
-                                @method('PUT') //ikutin yang di route
+                                {{-- ikutin yang di route --}}
+                                @method('PUT') 
                                 <div class="container">
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-2 col-form-label"> 

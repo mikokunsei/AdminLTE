@@ -58,7 +58,7 @@
                                             Password
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" name="password" id="" placeholder="Password" value="" required>
+                                            <input type="password" class="form-control" name="password" id="" placeholder="Password" value="" >
                                             
                                         </div>
                                     </div>
@@ -76,7 +76,8 @@
                                             Image
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="file" class="form-control" name="image" id="" value="{{$edit->image}}" required>
+                                            <img src="{{asset('imagemahasiswa/' . $edit->image)}}" alt="" style="width: 100px" class="mb-2">
+                                            <input type="file" class="form-control" name="image" id="" value="{{$edit->image}}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -84,7 +85,7 @@
                                             Address
                                         </label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" name="address" placeholder="Enter your address" value="{{ old('address', $edit->address)}}"></textarea>
+                                            <textarea class="form-control" name="address" placeholder="Enter your address" > {{$edit->address}}</textarea>
                                         </div>
                                     </div>
                                     

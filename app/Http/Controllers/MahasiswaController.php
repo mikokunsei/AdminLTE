@@ -68,7 +68,16 @@ class MahasiswaController extends Controller
         // }
 
 
-        $data = Mahasiswa::create($request->all());
+        $data = Mahasiswa::create([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'image' => $request->image,
+            'address' => $request->address
+            
+        ]);
 
         if ($request->hasFile('image')) {
 
@@ -127,30 +136,95 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Mahasiswa::findOrFail($id);
-        $data->update($request->all());
+        // dd($request->password);
+            if ($request->hasFile('image')) {
+                if ($request->password == null) {
+                    $data_mahasiswa = [
+                        'name' => $request->name,
+                        'nim' => $request->nim,
+                        'email' => $request->email,
+                        'phone' => $request->phone,
+                        'image' => $request->image,
+                        'address' => $request->address
+                        
+                        // $data['password'] = Hash::make($request->password);
+                    ];
+             
+                    $data = Mahasiswa::findOrFail($id);
+                    $data->update($data_mahasiswa);
+                }
+                else {
+                    $data_mahasiswa = [
+                        'name' => $request->name,
+                        'nim' => $request->nim,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                        'phone' => $request->phone,
+                        'image' => $request->image,
+                        'address' => $request->address
+                        
+                        // $data['password'] = Hash::make($request->password);
+        
+                    ];
+                
+                    $data = Mahasiswa::findOrFail($id);
+                    $data->update($request->all());
+                }
 
-        if ($request->hasFile('image')) {
+                $request->file('image')->move('imagemahasiswa/', $request->file('image')->getClientOriginalName()); // ambil image simpan di folder
+                $data->image = $request->file('image')->getClientOriginalName(); // ambil nama file
+                $data->save();
+                
+                $notification=array(
+                    'messege'=>'Successfully Data Created',
+                    'alert-type'=>'success'
+                );
+                return redirect()->route('allmahasiswa')->with($notification);
+             
+                
+            }
+            else {
 
-            $request->file('image')->move('imagemahasiswa/', $request->file('image')->getClientOriginalName()); // ambil image simpan di folder
-            $data->image = $request->file('image')->getClientOriginalName(); // ambil nama file
-            $data->save();
+                if ($request->password == null) {
+                    $data_mahasiswa = [
+                        'name' => $request->name,
+                        'nim' => $request->nim,
+                        'email' => $request->email,
+                        'phone' => $request->phone,
+                        'address' => $request->address
+                        
+                        // $data['password'] = Hash::make($request->password);
+                    ];  
+                    $data = Mahasiswa::findOrFail($id);
+                    $data->update($data_mahasiswa);
+                    
+                }
+                    else {
+                        // dd(Hash::make($request->password));
+                        $data_mahasiswa = [
+                            'name' => $request->name,
+                            'nim' => $request->nim,
+                            'email' => $request->email,
+                            'password' => Hash::make($request->password),
+                            'phone' => $request->phone,
+                            'address' => $request->address
+                            
+                            // $data['password'] = Hash::make($request->password);
             
-            $notification=array(
-                'messege'=>'Successfully Data Created',
-                'alert-type'=>'success'
-            );
-            return redirect()->route('allmahasiswa')->with($notification);
+                        ];
+                    
+                        $data = Mahasiswa::findOrFail($id);
+                        $data->update($data_mahasiswa);
             
-        }
-
-        else {
-            $notification=array(
-                'messege'=>'Something is wrong !',
-                'alert-type'=>'error'
-            );
-            return redirect()->route('allmahasiswa')->with($notification);
-        }
+                    }
+                
+                $notification=array(
+                    'messege'=>'Data Updated !',
+                    'alert-type'=>'success'
+                );
+                return redirect()->route('allmahasiswa')->with($notification);
+            }
+        
 
     }
 

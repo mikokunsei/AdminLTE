@@ -38,7 +38,7 @@
                                 <td>
                                   {{-- <img src="{{ $row->image }}" alt=""> --}}
                                   {{-- <img src="{{URL::asset( $row->image)}} " alt="" style="width: 40px"> --}}
-                                  <img src="{{asset('imagemahasiswa/' . $row->image)}} " alt="" style="width: 40px">
+                                  <img src="{{asset('imagemahasiswa/' . $row->image)}} " alt="" style="width: 60px">
                                 </td>
                                 <td>{{ $row->address }}</td>
                                 <td>

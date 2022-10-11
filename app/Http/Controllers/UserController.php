@@ -55,10 +55,27 @@ class UserController extends Controller
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['updated_at'] = date('Y-m-d H:i:s');
 
+
+        // $this->validate($request, [
+        //     'name' => 'required|min:5',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required|min:6|confirmed', //field_confirmation
+        //     'role' => 'required'
+        // ]);
+        
+        
+        // $data = User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => bcrypt($request->password),
+        //     'role' => $request->role
+        // ]);
+
+        // $request['password'] = bcrypt($request->input('password'));
         // $data = User::create($request->all());
 
         $insert = DB::table('users')->insert($data);
-        if ($insert) 
+        if ($request) 
         {
             $notification=array(
                 'messege'=>'Successfully User Created',
@@ -119,7 +136,7 @@ class UserController extends Controller
         // $data->update($request->all());
 
         $update = DB::table('users')->where('id', $id)->update($data);
-        if ($update) {
+        if ($request->password == null) {
             $notification=array(
                 'messege'=>'User Updated Successfully',
                 'alert-type'=>'success'
