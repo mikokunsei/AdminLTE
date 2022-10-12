@@ -12,6 +12,8 @@
                 <div class="card-header">
                   <h3 class="card-title">All User</h3>
                 </div>
+
+                <a href="{{url('/add-user')}} " class="btn btn-success ml-4 mt-4 " style="width: 100pt">Tambah Data</a>
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="example1" class="table table-bordered table-striped">

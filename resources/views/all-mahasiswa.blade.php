@@ -13,6 +13,7 @@
                   <h3 class="card-title">Data Mahasiswa</h3>
                 </div>
                 <!-- /.card-header -->
+                <a href="{{url('/add-mahasiswa')}} " class="btn btn-success ml-4 mt-4 " style="width: 100pt">Tambah Data</a>
                 <div class="card-body">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>

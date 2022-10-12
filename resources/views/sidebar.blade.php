@@ -60,27 +60,27 @@
               <li class="nav-item">
                 <a href="{{url('/all-user')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>All User</p>
+                  <p>Data User</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{url('/add-user')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add User</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a href="{{url('/all-mahasiswa')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Mahasiswa</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{url('/add-mahasiswa')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Mahasiswa</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </li>
 
