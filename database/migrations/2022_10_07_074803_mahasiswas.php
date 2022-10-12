@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigInteger('phone');
-            $table->string('photo')->nullable();
-            $table->longText('address');
+            $table->bigInteger('phone')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
