@@ -41,12 +41,16 @@
                                             Password
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" name="password" id="" placeholder="Password" required>
-                                            
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="" placeholder="Password" required>
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="password" class="col-sm-2 col-form-label"> 
+                                        <label for="role" class="col-sm-2 col-form-label"> 
                                             User Role Type
                                         </label>
                                         <div class="col-sm-10">

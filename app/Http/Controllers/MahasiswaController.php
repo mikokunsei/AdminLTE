@@ -71,6 +71,18 @@ class MahasiswaController extends Controller
         // }
 
 
+        //VALIDATION
+        
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'nim' => 'required|unique:mahasiswas',
+            'email' => 'required',
+            'password' => 'required',
+            'phone' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'address' => 'required|max:255',
+        ]);
+
         $data = Mahasiswa::create([
             'name' => $request->name,
             'nim' => $request->nim,
@@ -139,6 +151,15 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'nim' => 'required',
+            'email' => 'required',
+            'password_confirmation' => 'same:password',
+            'phone' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'address' => 'required|max:255',
+        ]);
         // dd($request->password);
             if ($request->hasFile('image')) {
 

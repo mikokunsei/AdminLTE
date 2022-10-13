@@ -39,7 +39,11 @@
                                 <td>
                                   {{-- <img src="{{ $row->image }}" alt=""> --}}
                                   {{-- <img src="{{URL::asset( $row->image)}} " alt="" style="width: 40px"> --}}
-                                  <img src="{{asset('imagemahasiswa/' . $row->image)}} " alt="" style="width: 60px">
+                                  {{-- <img src="{{asset('imagemahasiswa/' . $row->image)}} " class="btn" alt="" style="width: 60px"> --}}
+                                  
+                                  <a href="{{url('imagemahasiswa/' . $row->image)}}" class="btn">
+                                    <img src="{{asset('imagemahasiswa/' . $row->image)}} " class="btn" alt="" style="width: 100px">
+                                  </a>
                                 </td>
                                 <td>{{ $row->address }}</td>
                                 <td>

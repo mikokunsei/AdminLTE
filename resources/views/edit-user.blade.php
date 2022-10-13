@@ -26,7 +26,12 @@
                                             User name
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="name" id="" placeholder="Enter your name" value="{{$edit->name}}">
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" placeholder="Enter your name" value="{{$edit->name}}">
+                                            @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -34,7 +39,12 @@
                                             Email
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" name="email" id="" placeholder="Enter your email" value="{{$edit->email}}"> 
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="" placeholder="Enter your email" value="{{$edit->email}}"> 
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -42,8 +52,12 @@
                                             Password
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" name="password" id="" placeholder="Password" value="">
-                                            
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="" placeholder="Password" value="">
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">

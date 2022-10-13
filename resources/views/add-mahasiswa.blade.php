@@ -25,7 +25,12 @@
                                             Name
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="name" id="" placeholder="Enter your name" required>
+                                            <input type="text" class="form-control " name="name" id="" placeholder="Enter your name" required>
+                                            {{-- @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror --}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -62,21 +67,26 @@
                                             
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group row">
-                                        <label for="password" class="col-sm-2 col-form-label"> 
+                                    <div class="form-group row">
+                                        <label for="password_confirmation" class="col-sm-2 col-form-label"> 
                                             Confirm Password
                                         </label>
                                         <div class="col-sm-10">
                                             <input type="password" class="form-control" name="password_confirmation" id="" placeholder="Confirm Password" required>
                                             
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="form-group row">
                                         <label for="image" class="col-sm-2 col-form-label"> 
                                             Image
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="file" class="form-control" name="image" id="" required>
+                                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="" required>
+                                            @error('image')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
